@@ -105,6 +105,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 					}
 				}
 				chain.doFilter(request, response);
+
 	        } catch (RuntimeException e) {
 	        	/* HANDLE ALL EXCEPTION IN FILTER */
 	        	if (e instanceof jwt.springboot.expressions.security.web.exception.UserNotFoundException) {
