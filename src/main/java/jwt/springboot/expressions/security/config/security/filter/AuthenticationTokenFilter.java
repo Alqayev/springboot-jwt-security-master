@@ -42,6 +42,11 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
 	private final Log logger = LogFactory.getLog(this.getClass());
 
+
+
+
+
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -106,6 +111,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 				}
 				chain.doFilter(request, response);
 
+
 	        } catch (RuntimeException e) {
 	        	/* HANDLE ALL EXCEPTION IN FILTER */
 	        	if (e instanceof jwt.springboot.expressions.security.web.exception.UserNotFoundException) {
@@ -131,11 +137,17 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 	            response.getWriter().write(convertObjectToJson(this.response));
 	    }
 	}
-	
+
+
+
+
+
+
 	/*create response json*/
 	public String convertObjectToJson(Object object) throws JsonProcessingException {
 		Optional<Object> opt = Optional.ofNullable(object);
         if (!opt.isPresent()) return null;
         return mapper.writeValueAsString(object);
     }
+
 }
